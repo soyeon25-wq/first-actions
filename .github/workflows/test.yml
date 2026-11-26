@@ -1,0 +1,13 @@
+name: Run Tests
+on: [pull_request]   # PR 생성/업데이트 시 실행
+
+jobs:
+  test:                        # Job 이름
+    runs-on: ubuntu-latest     # 실행 환경(가상머신)
+    steps:
+      - uses: actions/checkout@v4        # 가상머신에 저장소 코드를 다운로드
+      - uses: actions/setup-python@v5    # 가상머신에 Python을 설치
+        with:
+          python-version: "3.x"
+      - run: pip install pytest          # pytest 설치
+      - run: pytest -q                   # 테스트 실행
